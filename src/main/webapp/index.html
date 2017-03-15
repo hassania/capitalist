@@ -1,88 +1,217 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        <link rel="stylesheet" href="style.css" type="text/css"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        <link href="style.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <title>STAR WARS Capitalist !</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <script type="text/javascript">
+        <script>
             var serveurUrl = "http://localhost:8080/StarWars_Capitalist/";
-            
             var currentWorld;
+            var bar = [];
             $(document).ready(function () {
-                $.getJson(serveurUrl + "/webresources/generic/", function (world) {
-                    $(this).each(world.products.product, function (index, product) {
-                        currentWorld = world;
-                        $("#monde .img img").attr("src", serveurUrl + currentWorld.logo);
-                        $("#monde h1").html(currentWorld.name);
-                        $("#argent h1").html(formatNumber(currentWorld.money) + " CR");
-                        // ajout des produits du monde
-                        $.each(world.products.product, function (index, product) {
-                            var produit = $("#produits .template").clone();
 
-                            produit.find(".img .logo img").attr("src", serveurUrl + product.logo);
-                            produit.find(".img .quantite span").html(product.quantite);
-                            produit.find(".gain .gain-container span").html(formatNumber(product.revenu * (1 + currentWorld.activeangels * currentWorld.angelbonus / 100)));
-                            produit.find(".achat .prix").html("x1&nbsp;&nbsp;&nbsp;&nbsp;" + product.cout);
-                            produit.find(".temps .temps-container span").html(msToTime(product.vitesse));
-
-                            produit.removeClass("template");
-                            produit.attr("id", "p" + (index + 1));
-                            produit.appendTo("#produits");
-                        });
-                    });
-                });
+            // Récupération du monde de l'utilisateur
+            $.getJSON(serveurUrl + "webresources/generic/world", function (world) {
+            currentWorld = world;
+            $("#monde img").html('<img src="' + serveurUrl + currentWorld.logo + '"/>');
+            $("#monde h2").html(currentWorld.name);
+            $("#argent h1").html(currentWorld.money + " CR");
+            //Pour chaque produit//
+            $.each(world.products.product, function (index, product) {
+            var produit = $(".template").clone();
+            produit.removeClass("template");
+            produit.attr("class", "product");
+            produit.attr("id", "p" + (index + 1));
+            if (product.id < 5) {
+            produit.attr("style", "width:50%;float:left");
+            } else {
+            produit.attr("style", "width:50%;float:right");
+            }
+            produit.find(".nom p").html(product.name);
+            produit.find(".roundedImage").html('<img style="width:100%;height:100%" src="' + serveurUrl + product.logo + '"/>');
+            produit.find(".quantite").html(product.quantite);
+            produit.find(".revenu").html(product.revenu);
+            produit.find(".timeleft").html(product.timeleft);
+            //Click sur l'image de produit
+            $(".roundedImage").click(function (event) {
+            var id = $(this).parents(".product").attr("id").substr(1) - 1;
+            var product = currentWorld.products.product[id];
             });
-
+            produit.appendTo("#liste");
+            });
+            });
+            
+            //Animation de la barre de progession
+            var bar = new ProgressBar.Line("#light", {strokeWidth: 100, color: '#ff0000'});
+            bar.animate(1, {duration: 1000});
+            bar.set(0.5);
+            
+            //Fonction calcul de score
+            
+            });
         </script>
-        <title>STAR WARS Republic Capitalist !</title>
     </head>
+
     <body>
-        <div class="container-fluid">             
-            <div class="row">                   
-                <div class="col-md-4" style="width: 100%; display: flex;">
-                    <div id="monde" style="width: 15%;"></div> 
-                    <div id="argent" style="width:42.5%">CR 3.00</div>                    
-                    <div id="multi" style="width:42.5%">Buy xX</div>
+        <div class="container-fluid">
+            <!--Barre du haut avec le monde, l'argent et le multipliateur d'achat-->
+            <div class="row">
+                <!--En tete de gauche avec le nom et le logo du monde-->
+                <div class="col-md-4" id="monde">
+                    <div class="img"><img id="img"/></div>
+                    <h2 style="color:#fff"></h2>
                 </div>
-                <div class="col-md-2" style="width: 15%; text-align: center;">
-                    <input type="button" value="Unlocks"><br /><br /><br /><br />
-                    <input type="button" value="Cash Upgrages"><br /><br /><br /><br />
-                    <input type="button" value="AngelUpgrades"><br /><br /><br /><br />
-                    <input type="button" value="Managers"><br /><br /><br /><br />
-                    <input type="button" value="Investors"><br /><br /><br /><br />
-                </div>                    
-                <div class="col-md-10" id="produits">
-                    <div class="produit template">
-                        <div class="div-produit">
-                            <table>
-                                <tr>
-                                    <td rowspan="2" class="img">
-                                        <div class="logo"><img/></div>
-                                        <div class="quantite"><span></span></div>
-                                    </td>
-                                    <td colspan="2" class="gain">
-                                        <div class="gain-container">
-                                            <span></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="achat">
-                                        <button type="button" class="btn prix"></button>
-                                    </td>
-                                    <td class="temps">
-                                        <div class="temps-container"><span></span></div>
-                                    </td>
-                                </tr>
-                            </table>
+                <div class="col-md-4" id="argent">
+                    <h1></h1>
+                </div>
+                <div class="col-md-4" id="boutons">
+                    <button type="button" class="btn_multi" id="multiplicateur">Buy x1</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" data-target="#unlocks" id="unlocksbutton">&nbsp;Unlocks</div>
+                    <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" data-target="#cashupgrades" id="cashupgradesbutton"><span class="badge"></span>&nbsp;Upgrades</div>
+                    <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" data-target="#angelupgrades" id="angelupgradesbutton"><span class="badge"></span>&nbsp;Angel Upgrades</div>
+                    <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" data-target="#managers" id="managersbutton"><span class="badge"></span>&nbsp;Managers</div>
+                    <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" data-target="#investors" id="investorsbutton"><span class="badge"></span>&nbsp;Investors</div>
+                </div>
+                <div class="col-md-10">
+                    <div id="liste">
+                        <div class="template">
+                            <div class="nom"><p></p></div>
+                            <div class="icon">
+                                <div class="roundedImage"></div>
+                                <div class="quantite" id="moncercle"></div>
+                            </div>
+                            <div class="informations">
+                                <div class="progressBar">
+                                    <div id="poignee"><img src="http://localhost:8080/StarWars_Capitalist/img/poignee.png" style="width:120%;"/></div>
+                                    <div id="light">
+                                        <div class="revenu">Revenu :</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button id="achat" style="float: left; width:60%">x1+         COUT</button>
+                                    <div class="timeleft" style="float: right; width: 40%;">Temps restant :</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
+        
+        <div id="unlocks" class="modal fade">
+            <div>
+                <!-- contenu principal de la fenêtre -->
+            </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Unlocks</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="cashupgrades" class="modal fade">
+            <div>
+                <!-- contenu principal de la fenêtre -->
+            </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Upgrades</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="angelupgrades" class="modal fade">
+            <div>
+                <!-- contenu principal de la fenêtre -->
+            </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Angels Upgrade</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="managers" class="modal fade">
+            <div>
+                <!-- contenu principal de la fenêtre -->
+            </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Managers</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="investors" class="modal fade">
+            <div>
+                <!-- contenu principal de la fenêtre -->
+            </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Investors</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
