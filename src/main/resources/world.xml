@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<world
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='jaxb/world/worldSchema.xsd'>
+    <name>Star Wars Republic Capitalist</name>
+    <logo></logo>
+    <money>1</money>
+    <score>0</score>
+    <totalangels>0</totalangels>
+    <activeangels>0</activeangels>
+    <angelbonus>2</angelbonus>
+    <lastupdate>0</lastupdate>
+    <products>
+        <product>
+            <id>1</id>
+            <name>Droïde</name>
+            <logo>null</logo>
+            <cout>1</cout>
+            <croissance>1.07</croissance>
+            <revenu>1</revenu>
+            <vitesse>1000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0</timeleft>
+            <managerUnlocked>false</managerUnlocked>
+            <palliers>
+                <pallier>
+                    <name>Easy Droïde</name>
+                    <logo>null</logo>
+                    <seuil>25</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+                <pallier>
+                    <name>Third Droïde</name>
+                    <logo>null</logo>
+                    <seuil>50</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+                <pallier>
+                    <name>Droïde Lord</name>
+                    <logo>null</logo>
+                    <seuil>100</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+            </palliers>
+        </product>
+        <product>
+            <id>2</id>
+            <name>Stormtrooper</name>
+            <logo>null</logo>
+            <cout>100</cout>
+            <croissance>1.15</croissance>
+            <revenu>100</revenu>
+            <vitesse>10000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0</timeleft>
+            <managerUnlocked>false</managerUnlocked>
+            <palliers>
+            </palliers>
+        </product>
+        <product>
+            <id>3</id>
+            <name>Troupes</name>
+            <logo>null</logo>
+            <cout>500</cout>
+            <croissance>1.14</croissance>
+            <revenu>400</revenu>
+            <vitesse>100000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0</timeleft>
+            <managerUnlocked>false</managerUnlocked>
+            <palliers>
+            </palliers>
+        </product>
+    </products>
+    <allunlocks>
+        <pallier>
+            <name>Easy Droïde</name>
+            <logo>null</logo>
+            <seuil>25</seuil>
+            <idcible>1</idcible>
+            <ratio>2</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+            <name>Third Droïde</name>
+            <logo>null</logo>
+            <seuil>50</seuil>
+            <idcible>1</idcible>
+            <ratio>2</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+            <name>Droïde Lord</name>
+            <logo>null</logo>
+            <seuil>100</seuil>
+            <idcible>1</idcible>
+            <ratio>2</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+    </allunlocks>
+    <upgrades>
+        <pallier>
+            <name>Que la force soit avec toi</name>
+            <logo>null</logo>
+            <seuil>10</seuil>
+            <idcible>1</idcible>
+            <ratio>10</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+    </upgrades>
+    <angelupgrades>
+        <pallier>
+            <name>R2-D2</name>
+            <logo>null</logo>
+            <seuil>10000</seuil>
+            <idcible>1</idcible>
+            <ratio>1</ratio>
+            <typeratio>ange</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+    </angelupgrades>
+    <managers>
+        <pallier>
+            <name>Droïde</name>
+            <logo>null</logo>
+            <seuil>500000</seuil>
+            <idcible>1</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+            <name>Clone</name>
+            <logo>null</logo>
+            <seuil>1200000</seuil>
+            <idcible>2</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+    </managers>
+
+</world>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            var serveurUrl = "http://localhost:8080/StarWars_Capitalist/";
+            
+            var currentWorld;
+            $(document).ready(function () {
+                $.getJson(serveurUrl + "/webresources/generic/", function (world) {
+                    $(this).each(world.products.product, function (index, product) {
+                        currentWorld = world;
+                        $("#monde .img img").attr("src", serveurUrl + currentWorld.logo);
+                        $("#monde h1").html(currentWorld.name);
+                        $("#argent h1").html(formatNumber(currentWorld.money) + " CR");
+                        // ajout des produits du monde
+                        $.each(world.products.product, function (index, product) {
+                            var produit = $("#produits .template").clone();
+
+                            produit.find(".img .logo img").attr("src", serveurUrl + product.logo);
+                            produit.find(".img .quantite span").html(product.quantite);
+                            produit.find(".gain .gain-container span").html(formatNumber(product.revenu * (1 + currentWorld.activeangels * currentWorld.angelbonus / 100)));
+                            produit.find(".achat .prix").html("x1&nbsp;&nbsp;&nbsp;&nbsp;" + product.cout);
+                            produit.find(".temps .temps-container span").html(msToTime(product.vitesse));
+
+                            produit.removeClass("template");
+                            produit.attr("id", "p" + (index + 1));
+                            produit.appendTo("#produits");
+                        });
+                    });
+                });
+            });
+
+        </script>
+        <title>STAR WARS Republic Capitalist !</title>
+    </head>
+    <body>
+        <div class="container-fluid">             
+            <div class="row">                   
+                <div class="col-md-4" style="width: 100%; display: flex;">
+                    <div id="monde" style="width: 15%;"></div> 
+                    <div id="argent" style="width:42.5%">CR 3.00</div>                    
+                    <div id="multi" style="width:42.5%">Buy xX</div>
+                </div>
+                <div class="col-md-2" style="width: 15%; text-align: center;">
+                    <input type="button" value="Unlocks"><br /><br /><br /><br />
+                    <input type="button" value="Cash Upgrages"><br /><br /><br /><br />
+                    <input type="button" value="AngelUpgrades"><br /><br /><br /><br />
+                    <input type="button" value="Managers"><br /><br /><br /><br />
+                    <input type="button" value="Investors"><br /><br /><br /><br />
+                </div>                    
+                <div class="col-md-10" id="produits">
+                    <div class="produit template">
+                        <div class="div-produit">
+                            <table>
+                                <tr>
+                                    <td rowspan="2" class="img">
+                                        <div class="logo"><img/></div>
+                                        <div class="quantite"><span></span></div>
+                                    </td>
+                                    <td colspan="2" class="gain">
+                                        <div class="gain-container">
+                                            <span></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="achat">
+                                        <button type="button" class="btn prix"></button>
+                                    </td>
+                                    <td class="temps">
+                                        <div class="temps-container"><span></span></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </body>
+</html>
