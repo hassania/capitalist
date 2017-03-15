@@ -11,52 +11,8 @@
         <title>STAR WARS Capitalist !</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <script>
-            var serveurUrl = "http://localhost:8080/StarWars_Capitalist/";
-            var currentWorld;
-            var bar = [];
-            $(document).ready(function () {
+        <script type="text/javascript" src="javascript.js" ></script>
 
-            // Récupération du monde de l'utilisateur
-            $.getJSON(serveurUrl + "webresources/generic/world", function (world) {
-            currentWorld = world;
-            $("#monde img").html('<img src="' + serveurUrl + currentWorld.logo + '"/>');
-            $("#monde h2").html(currentWorld.name);
-            $("#argent h1").html(currentWorld.money + " CR");
-            //Pour chaque produit//
-            $.each(world.products.product, function (index, product) {
-            var produit = $(".template").clone();
-            produit.removeClass("template");
-            produit.attr("class", "product");
-            produit.attr("id", "p" + (index + 1));
-            if (product.id < 5) {
-            produit.attr("style", "width:50%;float:left");
-            } else {
-            produit.attr("style", "width:50%;float:right");
-            }
-            produit.find(".nom p").html(product.name);
-            produit.find(".roundedImage").html('<img style="width:100%;height:100%" src="' + serveurUrl + product.logo + '"/>');
-            produit.find(".quantite").html(product.quantite);
-            produit.find(".revenu").html(product.revenu);
-            produit.find(".timeleft").html(product.timeleft);
-            //Click sur l'image de produit
-            $(".roundedImage").click(function (event) {
-            var id = $(this).parents(".product").attr("id").substr(1) - 1;
-            var product = currentWorld.products.product[id];
-            });
-            produit.appendTo("#liste");
-            });
-            });
-            
-            //Animation de la barre de progession
-            var bar = new ProgressBar.Line("#light", {strokeWidth: 100, color: '#ff0000'});
-            bar.animate(1, {duration: 1000});
-            bar.set(0.5);
-            
-            //Fonction calcul de score
-            
-            });
-        </script>
     </head>
 
     <body>
@@ -94,9 +50,9 @@
                             <div class="informations">
                                 <div class="progressBar">
                                     <div id="poignee"><img src="http://localhost:8080/StarWars_Capitalist/img/poignee.png" style="width:120%;"/></div>
-                                    <div id="light">
-                                        <div class="revenu">Revenu :</div>
-                                    </div>
+                                    <div id="light"></div>
+                                    <div class="revenu">Revenu :</div>
+                                    
                                 </div>
                                 <div>
                                     <button id="achat" style="float: left; width:60%">x1+         COUT</button>
