@@ -83,5 +83,4 @@ public class Services implements Serializable {
     public String toString() {
         return "world.Services[ id=" + id + " ]";
     }
-    
 }

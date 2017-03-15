@@ -58,10 +58,35 @@ and open the template in the editor.
                     <unlocked>false</unlocked>
                 </pallier>
             </palliers>
+=======
+    xsi:noNamespaceSchemaLocation='jaxb/world/capitalist.xsd'>
+    <name>Star Wars Republic Capitalist</name>
+    <logo></logo>
+    <money>1</money>
+    <score></score>
+    <totalangels></totalangels>
+    <activeangels></activeangels>
+    <angelbonus></angelbonus>
+    <lastupdate></lastupdate>
+    <products>
+        <product>
+            <id>1</id>
+            <name>Blaster</name>
+            <logo></logo>
+            <cout>1</cout>
+            <croissance>1,07</croissance>
+            <revenu>1</revenu>
+            <vitesse>1000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0000</timeleft>
+            <managerUnlocked>0</managerUnlocked>
+            <palliers>0</palliers>
+>>>>>>> remotes/origin/master/master
         </product>
         <product>
             <id>2</id>
             <name>Stormtrooper</name>
+<<<<<<< HEAD
             <logo>null</logo>
             <cout>100</cout>
             <croissance>1.15</croissance>
@@ -72,10 +97,22 @@ and open the template in the editor.
             <managerUnlocked>false</managerUnlocked>
             <palliers>
             </palliers>
+=======
+            <logo></logo>
+            <cout>100</cout>
+            <croissance>1,15</croissance>
+            <revenu>100</revenu>
+            <vitesse>10000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0000</timeleft>
+            <managerUnlocked>0</managerUnlocked>
+            <palliers>0</palliers>
+>>>>>>> remotes/origin/master/master
         </product>
         <product>
             <id>3</id>
             <name>Troupes</name>
+<<<<<<< HEAD
             <logo>null</logo>
             <cout>500</cout>
             <croissance>1.14</croissance>
@@ -86,10 +123,22 @@ and open the template in the editor.
             <managerUnlocked>false</managerUnlocked>
             <palliers>
             </palliers>
+=======
+            <logo></logo>
+            <cout>500</cout>
+            <croissance>1,14</croissance>
+            <revenu>400</revenu>
+            <vitesse>100000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0000</timeleft>
+            <managerUnlocked>0</managerUnlocked>
+            <palliers>0</palliers>
+>>>>>>> remotes/origin/master/master
         </product>
     </products>
     <allunlocks>
         <pallier>
+<<<<<<< HEAD
             <name>Easy Droïde</name>
             <logo>null</logo>
             <seuil>25</seuil>

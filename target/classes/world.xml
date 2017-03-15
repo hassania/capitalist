@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<world
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='jaxb/world/capitalist.xsd'>
+    <name>Star Wars Republic Capitalist</name>
+    <logo></logo>
+    <money>1</money>
+    <score></score>
+    <totalangels></totalangels>
+    <activeangels></activeangels>
+    <angelbonus></angelbonus>
+    <lastupdate></lastupdate>
+    <products>
+        <product>
+            <id>1</id>
+            <name>Blaster</name>
+            <logo></logo>
+            <cout>1</cout>
+            <croissance>1,07</croissance>
+            <revenu>1</revenu>
+            <vitesse>1000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0000</timeleft>
+            <managerUnlocked>0</managerUnlocked>
+            <palliers>0</palliers>
+        </product>
+        <product>
+            <id>2</id>
+            <name>Stormtrooper</name>
+            <logo></logo>
+            <cout>100</cout>
+            <croissance>1,15</croissance>
+            <revenu>100</revenu>
+            <vitesse>10000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0000</timeleft>
+            <managerUnlocked>0</managerUnlocked>
+            <palliers>0</palliers>
+        </product>
+        <product>
+            <id>3</id>
+            <name>Troupes</name>
+            <logo></logo>
+            <cout>500</cout>
+            <croissance>1,14</croissance>
+            <revenu>400</revenu>
+            <vitesse>100000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>0000</timeleft>
+            <managerUnlocked>0</managerUnlocked>
+            <palliers>0</palliers>
+        </product>
+    </products>
+    <allunlocks>
+        <pallier>
+            <name>Droïde de combat B1</name>
+            <logo></logo>
+            <seuil>10</seuil>
+            <idcible>1</idcible>
+            <ratio></ratio>
+            <typeratio></typeratio>
+            <unlocked>0</unlocked>
+        </pallier>
+        <pallier>
+            <name>Amélioration Leader</name>
+            <logo></logo>
+            <seuil>20</seuil>
+            <idcible>2</idcible>
+            <ratio></ratio>
+            <typeratio></typeratio>
+            <unlocked>0</unlocked>
+        </pallier>
+        <pallier>
+            <name>Bouclier Protection</name>
+            <logo></logo>
+            <seuil>5</seuil>
+            <idcible>3</idcible>
+            <ratio></ratio>
+            <typeratio></typeratio>
+            <unlocked>0</unlocked>
+        </pallier>
+    </allunlocks>
+    <upgrades>
+    </upgrades>
+    <angelupgrades>
+    </angelupgrades>
+    <managers>
+        
+    </managers>
+
+</world>
